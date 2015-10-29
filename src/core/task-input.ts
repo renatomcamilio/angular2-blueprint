@@ -26,6 +26,7 @@ export class TaskInput {
   submitTask() {
     const task = new TaskModel(this.description)
     this.taskService.createTask(task)
+    this.description = ""
   }
 
 }

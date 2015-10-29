@@ -1,37 +1,44 @@
 
-enum TaskStatus { Open, Close }
+export enum TaskStatus { Open, Closed }
 
 export class TaskModel {
 
   description: string
   status: TaskStatus
 
-  constructor(description: string) {
+  constructor(description: string, status: TaskStatus = TaskStatus.Open) {
     this.description = description
-    this.status = TaskStatus.Open
+    this.status = status
   }
 
   close() {
-    this.status = TaskStatus.Close
+    this.status = TaskStatus.Closed
   }
 
   open() {
     this.status = TaskStatus.Open
   }
 
+  isClosed(): boolean {
+    return this.status == TaskStatus.Closed
+  }
+
 }
 
 export class TaskService {
 
-  private todos: Array<TaskModel> = []
+  private tasks: Array<TaskModel> = [
+    new TaskModel("buy milk"),
+    new TaskModel("buy eggs", TaskStatus.Closed),
+  ]
 
   createTask(task: TaskModel) {
-    this.todos.push(task)
-    console.log(this.todos)
+    this.tasks.push(task)
+    console.log(this.tasks)
   }
 
   taskList(): Array<TaskModel> {
-    return this.todos
+    return this.tasks
   }
 
 }

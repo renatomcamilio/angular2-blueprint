@@ -1,4 +1,4 @@
-import {Component, View} from 'angular2/angular2'
+import {Component, View, Input, NgClass} from 'angular2/angular2'
 import {TaskModel} from './task-service';
 
 @Component({
@@ -6,15 +6,27 @@ import {TaskModel} from './task-service';
 })
 
 @View({
+  directives: [NgClass],
+  styles: [`
+    .closed {
+      color: #999;
+      text-decoration: line-through;
+    }
+  `],
   template: `
-    <input type="checkbox" /> Todo
+    <div [ng-class]="{ closed: task.isClosed() }">
+      <input type="checkbox" [checked]="task.isClosed()" (click)="toggleTaskStatus()" />
+      <span>{{task.description}}</span>
+    </div>
   `
 })
 
 export class TaskItem {
 
-  name: string
+  @Input() task: TaskModel
 
-  constructor(task: TaskModel) {}
+  toggleTaskStatus() {
+    this.task.isClosed() ? this.task.open() : this.task.close()
+  }
 
 }
