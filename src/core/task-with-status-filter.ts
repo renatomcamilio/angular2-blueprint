@@ -8,9 +8,15 @@ import {TaskModel} from './task-service'
 
 export class TasksWithStatusFilter {
 
-  transform(value, taskStatus) {
-    return value.filter((task: TaskModel) => {
-      return taskStatus == 'closed' ? task.isClosed() : !task.isClosed()
+  transform(taskList, taskStatus) {
+    console.log('filtering')
+
+    return taskList.filter((task: TaskModel) => {
+      if (taskStatus == 'closed') {
+        return task.isClosed()
+      } else {
+        return !task.isClosed()
+      }
     })
   }
 

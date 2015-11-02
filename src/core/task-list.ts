@@ -13,18 +13,26 @@ import {TasksWithStatusFilter} from './task-with-status-filter'
   template: `
     <div>
       <h3>Open</h3>
-      <task-item *ng-for="#task of taskService.taskList() | tasksWithStatus:'open'" [task]="task"></task-item>
-
-      <h3>Closed</h3>
-      <task-item *ng-for="#task of taskService.taskList() | tasksWithStatus:'closed'" [task]="task"></task-item>
+      <task-item *ng-for="#task of taskService.taskList() | tasksWithStatus:taskStatus" [task]="task"></task-item>
+      <button (click)="toggleTaskStatus()">toggle visible</button>
     </div>
   `
 })
 
 export class TaskList {
 
+  taskStatus = 'open'
+
   constructor(
     public taskService: TaskService
   ) {}
+
+  toggleTaskStatus() {
+    if (this.taskStatus == 'open') {
+      this.taskStatus = 'closed'
+    } else {
+      this.taskStatus = 'open'
+    }
+  }
 
 }
