@@ -14,7 +14,7 @@ import {TasksWithStatusFilter} from './task-with-status-filter'
     <div>
       <h3>Open</h3>
       <task-item *ng-for="#task of taskService.taskList() | tasksWithStatus:taskStatus" [task]="task"></task-item>
-      <button (click)="toggleTaskStatus()">toggle visible</button>
+      <button class="btn btn-default" (click)="toggleTaskStatus()">toggle visible</button>
     </div>
   `
 })

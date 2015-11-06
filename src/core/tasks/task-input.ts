@@ -1,6 +1,7 @@
 import {Component, View, FORM_DIRECTIVES} from 'angular2/angular2'
 import {TaskModel, TaskService} from './task-service'
 
+
 @Component({
   selector: 'task-input'
 })
@@ -17,11 +18,10 @@ import {TaskModel, TaskService} from './task-service'
 export class TaskInput {
 
   description: string
-  taskService: TaskService
 
-  constructor(taskService: TaskService) {
-    this.taskService = taskService
-  }
+  constructor(
+    public taskService: TaskService
+  ) {}
 
   submitTask() {
     const task = new TaskModel(this.description)

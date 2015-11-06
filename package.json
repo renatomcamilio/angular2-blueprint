@@ -4,7 +4,7 @@
   "description": "Angular 2 App Starter Kit",
   "main": "index.js",
   "scripts": {
-    "start": "live-server --open=./"
+    "start": "live-server --open=./ --entry-file=index.html"
   },
   "author": "Renato Camilio <renatomcamilio@gmail.com>",
   "license": "MIT",
